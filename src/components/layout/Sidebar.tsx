@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { LayoutDashboard, Plane, Users, Settings, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,8 +10,6 @@ const items: { to: string; label: string; icon: typeof LayoutDashboard; exact?: 
 ];
 
 export function Sidebar() {
-  const pathname = useRouterState({ select: s => s.location.pathname });
-
   return (
     <aside className="w-[240px] shrink-0 border-r border-border bg-sidebar flex flex-col">
       <div className="h-16 flex items-center gap-2 px-6 border-b border-border">
@@ -27,22 +25,17 @@ export function Sidebar() {
         <div className="text-[11px] uppercase tracking-wider text-muted-foreground px-3 py-2">Workspace</div>
         <ul className="space-y-1">
           {items.map(item => {
-            const active = item.exact ? pathname === item.to : pathname.startsWith(item.to);
             const Icon = item.icon;
             return (
               <li key={item.to}>
                 <Link
                   to={item.to}
-                  className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all",
-                    active
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  )}
+                  activeOptions={{ exact: !!item.exact }}
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-muted-foreground hover:bg-muted hover:text-foreground data-[status=active]:bg-sidebar-accent data-[status=active]:text-sidebar-accent-foreground group/nav"
                 >
-                  <Icon className={cn("w-[18px] h-[18px]", active && "text-primary")} />
+                  <Icon className={cn("w-[18px] h-[18px] group-data-[status=active]/nav:text-primary")} />
                   <span>{item.label}</span>
-                  {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />}
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-data-[status=active]/nav:opacity-100" />
                 </Link>
               </li>
             );
