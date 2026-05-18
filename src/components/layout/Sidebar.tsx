@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { LayoutDashboard, Plane, Users, Settings, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,8 +10,6 @@ const items: { to: string; label: string; icon: typeof LayoutDashboard; exact?: 
 ];
 
 export function Sidebar() {
-  const pathname = useRouterState({ select: s => s.location.pathname });
-
   return (
     <aside className="w-[240px] shrink-0 border-r border-border bg-sidebar flex flex-col">
       <div className="h-16 flex items-center gap-2 px-6 border-b border-border">
