@@ -36,11 +36,13 @@ src/routes/
 ## Views
 
 ### 1. Dashboard
+
 - 4 summary widgets in a grid: Total You Owe, Total Owed to You, Active Trips, This Month Spend. Each = label + big number + tiny delta + icon.
 - "Your Trips" section header with **+ Create New Trip** button (teal, right-aligned).
 - Trip cards grid (3 per row): cover image placeholder (gradient), title, date range, overlapping member avatars, total expense, **Open Trip** button.
 
 ### 2. Trip Detail (`/trips/$tripId`)
+
 Split-pane: `grid-cols-[60%_40%] gap-6`.
 
 - **Left — Expenses**
@@ -52,24 +54,29 @@ Split-pane: `grid-cols-[60%_40%] gap-6`.
   - "Suggested Settlements" — minimized debt list ("Alex owes Bob ฿350") each with **Settle Up** button (updates mock state).
 
 ### 3. Add Expense Modal
+
 - Shadcn `Dialog`, `max-w-2xl`, `rounded-2xl`, `p-8`.
 - Grid form: Description (full), Amount + Category (2-col), Paid by (avatar chips, single-select), Split with (avatar checkboxes grid, equal split), Date.
 - Footer: Cancel · **Add Expense** (teal).
 
 ### 4. Friends / Settings
+
 - Friends: table of people with net balance.
 - Settings: simple profile + currency placeholder card.
 
 ## State (mock)
 
 `src/lib/store.ts` — Zustand-free, plain React context:
+
 ```text
 trips: Trip[]            # id, name, cover, dateRange, members[], budget, expenses[]
 addExpense, settleUp     # mutators
 ```
+
 Derived selectors compute per-member balances and minimized settlements (greedy debt-simplification).
 
 Seed:
+
 - Trip: "Chiang Mai Trip", Nov 12–18, 2025, budget ฿40,000.
 - Members: Alex, Bob, Priya, Mei.
 - Expenses: Airport taxi ฿800 (Alex, split 4), Hotel night 1 ฿4,500 (Bob, split 4), Street food dinner ฿1,200 (Priya, split 4), Temple tour ฿2,400 (Mei, split 4), Coffee & cake ฿520 (Alex, split Alex+Priya).

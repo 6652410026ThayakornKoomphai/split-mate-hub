@@ -11,7 +11,10 @@ const map = {
   other: { icon: Receipt, bg: "bg-slate-100", fg: "text-slate-700", label: "Other" },
 } as const;
 
-export const CATEGORIES = Object.entries(map).map(([id, v]) => ({ id: id as Category, label: v.label }));
+export const CATEGORIES = Object.entries(map).map(([id, v]) => ({
+  id: id as Category,
+  label: v.label,
+}));
 
 export function CategoryIcon({ category, size = 36 }: { category: Category; size?: number }) {
   const cfg = map[category];
@@ -26,4 +29,6 @@ export function CategoryIcon({ category, size = 36 }: { category: Category; size
   );
 }
 
-export function categoryLabel(c: Category) { return map[c].label; }
+export function categoryLabel(c: Category) {
+  return map[c].label;
+}

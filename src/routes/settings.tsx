@@ -2,7 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const Route = createFileRoute("/settings")({
   head: () => ({ meta: [{ title: "Settings — SplitMate" }] }),
@@ -37,7 +43,9 @@ function SettingsPage() {
           <div className="space-y-2">
             <Label>Default currency</Label>
             <Select defaultValue="THB">
-              <SelectTrigger className="h-11"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="h-11">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="THB">฿ Thai Baht (THB)</SelectItem>
                 <SelectItem value="USD">$ US Dollar (USD)</SelectItem>
@@ -49,7 +57,9 @@ function SettingsPage() {
           <div className="space-y-2">
             <Label>Theme</Label>
             <Select defaultValue="light">
-              <SelectTrigger className="h-11"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="h-11">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="light">Light</SelectItem>
                 <SelectItem value="dark">Dark</SelectItem>

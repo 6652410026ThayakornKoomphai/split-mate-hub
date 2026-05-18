@@ -22,9 +22,11 @@ export function Sidebar() {
         </div>
       </div>
       <nav className="p-3 flex-1">
-        <div className="text-[11px] uppercase tracking-wider text-muted-foreground px-3 py-2">Workspace</div>
+        <div className="text-[11px] uppercase tracking-wider text-muted-foreground px-3 py-2">
+          Workspace
+        </div>
         <ul className="space-y-1">
-          {items.map(item => {
+          {items.map((item) => {
             const Icon = item.icon;
             return (
               <li key={item.to}>
@@ -33,7 +35,9 @@ export function Sidebar() {
                   activeOptions={{ exact: !!item.exact }}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-muted-foreground hover:bg-muted hover:text-foreground data-[status=active]:bg-sidebar-accent data-[status=active]:text-sidebar-accent-foreground group/nav"
                 >
-                  <Icon className={cn("w-[18px] h-[18px] group-data-[status=active]/nav:text-primary")} />
+                  <Icon
+                    className={cn("w-[18px] h-[18px] group-data-[status=active]/nav:text-primary")}
+                  />
                   <span>{item.label}</span>
                   <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-data-[status=active]/nav:opacity-100" />
                 </Link>

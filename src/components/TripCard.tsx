@@ -3,8 +3,14 @@ import { Link } from "@tanstack/react-router";
 import { MapPin, Calendar, ArrowRight, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
-  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
-  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { AvatarStack } from "@/components/layout/Avatar";
 import { type Trip, formatTHB, tripTotals, useStore } from "@/lib/store";
@@ -23,7 +29,11 @@ export function TripCard({ trip }: { trip: Trip }) {
           {trip.location}
         </div>
         <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setConfirmOpen(true); }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setConfirmOpen(true);
+          }}
           aria-label="Delete trip"
           className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-rose-600 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
         >
@@ -41,14 +51,19 @@ export function TripCard({ trip }: { trip: Trip }) {
 
         <div className="flex items-end justify-between">
           <div>
-            <div className="text-[11px] uppercase tracking-wider text-muted-foreground">Total spend</div>
+            <div className="text-[11px] uppercase tracking-wider text-muted-foreground">
+              Total spend
+            </div>
             <div className="text-2xl font-semibold tabular mt-0.5">{formatTHB(total)}</div>
           </div>
           <AvatarStack members={trip.members} />
         </div>
 
         <Link to="/trips/$tripId" params={{ tripId: trip.id }} className="mt-auto">
-          <Button variant="outline" className="w-full justify-between group-hover:border-primary/40 group-hover:text-primary">
+          <Button
+            variant="outline"
+            className="w-full justify-between group-hover:border-primary/40 group-hover:text-primary"
+          >
             Open Trip <ArrowRight className="w-4 h-4" />
           </Button>
         </Link>
@@ -59,7 +74,8 @@ export function TripCard({ trip }: { trip: Trip }) {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete “{trip.name}”?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently remove the trip and all its expenses. This action cannot be undone.
+              This will permanently remove the trip and all its expenses. This action cannot be
+              undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

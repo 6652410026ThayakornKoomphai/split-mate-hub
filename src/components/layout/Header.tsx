@@ -2,20 +2,24 @@ import { useRouterState, Link } from "@tanstack/react-router";
 import { Search, ChevronDown, Bell } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
-  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
-  DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { useStore, CURRENT_USER_ID } from "@/lib/store";
 
 function useBreadcrumbs() {
-  const pathname = useRouterState({ select: s => s.location.pathname });
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { trips } = useStore();
   const parts = pathname.split("/").filter(Boolean);
   const crumbs: { label: string; to?: string }[] = [{ label: "Home", to: "/" }];
   if (parts[0] === "trips") {
     crumbs.push({ label: "My Trips", to: "/trips" });
     if (parts[1]) {
-      const t = trips.find(x => x.id === parts[1]);
+      const t = trips.find((x) => x.id === parts[1]);
       crumbs.push({ label: t?.name ?? parts[1] });
     }
   } else if (parts[0]) {
@@ -27,7 +31,7 @@ function useBreadcrumbs() {
 export function Header() {
   const crumbs = useBreadcrumbs();
   const { trips } = useStore();
-  const me = trips[0]?.members.find(m => m.id === CURRENT_USER_ID);
+  const me = trips[0]?.members.find((m) => m.id === CURRENT_USER_ID);
 
   return (
     <header className="h-16 border-b border-border bg-card/80 backdrop-blur flex items-center px-8 gap-6 sticky top-0 z-20">
@@ -36,7 +40,10 @@ export function Header() {
           <div key={i} className="flex items-center gap-2">
             {i > 0 && <span className="text-muted-foreground/60">/</span>}
             {c.to ? (
-              <Link to={c.to} className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                to={c.to}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
                 {c.label}
               </Link>
             ) : (

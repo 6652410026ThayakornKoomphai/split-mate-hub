@@ -23,7 +23,9 @@ function TripsPage() {
         </Button>
       </div>
       <div className="grid grid-cols-3 gap-5">
-        {trips.map(t => <TripCard key={t.id} trip={t} />)}
+        {trips.map((t) => (
+          <TripCard key={t.id} trip={t} />
+        ))}
       </div>
     </div>
   );
