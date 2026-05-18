@@ -2,12 +2,12 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { LayoutDashboard, Plane, Users, Settings, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const items = [
+const items: { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[] = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/trips", label: "My Trips", icon: Plane },
   { to: "/friends", label: "Friends", icon: Users },
   { to: "/settings", label: "Settings", icon: Settings },
-] as const;
+];
 
 export function Sidebar() {
   const pathname = useRouterState({ select: s => s.location.pathname });
