@@ -124,6 +124,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }]);
       return id;
     },
+    deleteTrip: (tripId) => {
+      setTrips(prev => prev.filter(t => t.id !== tripId));
+    },
   }), [trips]);
 
   return <StoreCtx.Provider value={value}>{children}</StoreCtx.Provider>;
