@@ -79,6 +79,7 @@ type Store = {
   addExpense: (tripId: string, e: Omit<Expense, "id">) => void;
   settleUp: (tripId: string, fromId: string, toId: string, amount: number) => void;
   createTrip: (name: string, location: string) => string;
+  deleteTrip: (tripId: string) => void;
 };
 
 const StoreCtx = createContext<Store | null>(null);
